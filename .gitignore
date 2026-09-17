@@ -1,0 +1,17 @@
+# 不上傳私人設定
+conf.json
+
+# PyInstaller 產物
+build/
+dist/
+
+# Python 暫存
+__pycache__/
+*.pyc
+
+# Log
+*.log
+
+# Python virtual environment
+venv/
+.venv/
