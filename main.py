@@ -38,13 +38,11 @@ def receive_sensor_data(project_control_no, pm25, measure_time):
             timeout=10
         )
 
-        if response.status_code == 200:
-            logging.info(f"上傳成功: {response.status_code} {response.text}，上傳的資料: {data}")
-        else:
-            logging.warning(f"上傳失敗: {response.status_code} {response.text}，上傳的資料: {data}")
+        if response.status_code != 200:
+            logging.error(f"上傳失敗: {response.status_code} {response.text}，上傳的資料: {data}")
 
     except requests.exceptions.RequestException as e:
-        logging.error(f"API連線失敗: {e}")
+        logging.error(f"API連線失敗: {e}，上傳的資料: {data}")
         return
 
 mqtt.start_mqtt(sensors, receive_sensor_data)
